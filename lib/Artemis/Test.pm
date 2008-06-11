@@ -35,7 +35,7 @@ sub _cpuinfo {
         my %cpu_count = ();
         $cpu_count{$_}++ foreach @cpus;
 
-        my $cpuinfo = join(', ', map { $cpu_count{$_}." x $_" } keys %cpu_count);
+        my $cpuinfo = join(', ', map { $cpu_count{$_}." cores [$_]" } keys %cpu_count);
         return $cpuinfo;
 }
 
@@ -100,15 +100,15 @@ sub artemis_test_meta
 
         # to be used by Artemis::Reports framework
 
-        diag "Artemis-suite-Name:              $suite_name";
-        diag "Artemis-suite-type:              library";
-        diag "Artemis-language-description:    $language_description";
-        diag "Artemis-machine-name:            $hostname";
-        diag "Artemis-uname:                   $uname";
-        diag "Artemis-osname:                  $osname";
-        diag "Artemis-cpuinfo                  $cpuinfo";
-        diag "Artemis-ram:                     $ram";
-        diag "Artemis-starttime-test-program:  $starttime_test_program";
+        say "# Artemis-suite-Name:              $suite_name";
+        say "# Artemis-suite-type:              library";
+        say "# Artemis-language-description:    $language_description";
+        say "# Artemis-machine-name:            $hostname";
+        say "# Artemis-uname:                   $uname";
+        say "# Artemis-osname:                  $osname";
+        say "# Artemis-cpuinfo                  $cpuinfo";
+        say "# Artemis-ram:                     $ram";
+        say "# Artemis-starttime-test-program:  $starttime_test_program";
 }
 
 =head1 NAME
