@@ -1,0 +1,19 @@
+---
+name: Artemis-Test
+version: 2.010001
+author:
+  - 'OSRC SysInt Team <osrc-sysint@elbe.amd.com>'
+abstract: Utilities for testing!
+license: restrictive
+requires:
+  Test::More: 0
+  parent: 0
+  perl: 5.010
+provides:
+  Artemis::Test:
+    file: lib/Artemis/Test.pm
+    version: 2.010001
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2

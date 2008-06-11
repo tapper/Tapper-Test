@@ -1,0 +1,7 @@
+Artemis-Test-*.*.tar.gz
+Artemis-Test-*.*
+_build
+blib
+^Build$
+MANIFEST.bak
+
