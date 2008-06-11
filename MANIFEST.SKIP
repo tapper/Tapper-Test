@@ -1,5 +1,5 @@
 Artemis-Test-*.*.tar.gz
-Artemis-Test-*.*
+^Artemis-Test-*.*$
 _build
 blib
 ^Build$
