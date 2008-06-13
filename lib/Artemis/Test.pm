@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010001';
+our $VERSION = '2.010002';
 
 use 5.010;
 
@@ -52,17 +52,15 @@ sub _starttime_test_program {
         return $starttime_test_program;
 }
 
-sub _suite_name {
+sub _suite_name
+{
         my $build_paramfile = '_build/build_params';
         my $makefile        = 'Makefile';
 
         if (-e $build_paramfile )
         {
                 my $params = do $build_paramfile;
-                my $suite_name = sprintf("%s-%s",
-                                         $params->[2]->{dist_name},
-                                         $params->[2]->{dist_version}->{original},
-                                         );
+                my $suite_name = $params->[2]->{dist_name};
                 return $suite_name;
         }
         elsif (-e $makefile)
@@ -76,6 +74,31 @@ sub _suite_name {
                 die 'Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL.';
         }
 }
+
+sub _suite_version
+{
+        my $build_paramfile = '_build/build_params';
+        my $makefile        = 'Makefile';
+
+        if (-e $build_paramfile )
+        {
+                my $params = do $build_paramfile;
+                my $suite_version = $params->[2]->{dist_version}->{original};
+                return $suite_version;
+        }
+        elsif (-e $makefile)
+        {
+                my $suite_version = `grep '^VERSION = ' Makefile | head -1 | cut -d= -f2-`;
+                chomp $suite_version;
+                $suite_version =~ s/^\s*//;
+                return $suite_version;
+        }
+        else
+        {
+                die 'Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL.';
+        }
+}
+
 
 sub _language_description {
         return "Perl $], $^X";
@@ -96,17 +119,19 @@ sub artemis_test_meta
         my $ram                    = $opts{ram}                    // _ram();
         my $starttime_test_program = $opts{starttime_test_program} // _starttime_test_program();
         my $suite_name             = $opts{suite_name}             // _suite_name();
+        my $suite_version          = $opts{suite_version}          // _suite_version();
         my $language_description   = $opts{language_description}   // _language_description();
 
         # to be used by Artemis::Reports framework
 
-        say "# Artemis-suite-Name:              $suite_name";
+        say "# Artemis-suite-name:              $suite_name";
+        say "# Artemis-suite-version:           $suite_version";
         say "# Artemis-suite-type:              library";
         say "# Artemis-language-description:    $language_description";
         say "# Artemis-machine-name:            $hostname";
         say "# Artemis-uname:                   $uname";
         say "# Artemis-osname:                  $osname";
-        say "# Artemis-cpuinfo                  $cpuinfo";
+        say "# Artemis-cpuinfo:                 $cpuinfo";
         say "# Artemis-ram:                     $ram";
         say "# Artemis-starttime-test-program:  $starttime_test_program";
 }
