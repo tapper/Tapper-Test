@@ -124,16 +124,16 @@ sub artemis_test_meta
 
         # to be used by Artemis::Reports framework
 
-        say "# Artemis-suite-name:              $suite_name";
-        say "# Artemis-suite-version:           $suite_version";
-        say "# Artemis-suite-type:              library";
-        say "# Artemis-language-description:    $language_description";
-        say "# Artemis-machine-name:            $hostname";
-        say "# Artemis-uname:                   $uname";
-        say "# Artemis-osname:                  $osname";
-        say "# Artemis-cpuinfo:                 $cpuinfo";
-        say "# Artemis-ram:                     $ram";
-        say "# Artemis-starttime-test-program:  $starttime_test_program";
+        print "# Artemis-suite-name:              $suite_name\n";
+        print "# Artemis-suite-version:           $suite_version\n";
+        print "# Artemis-suite-type:              library\n";
+        print "# Artemis-language-description:    $language_description\n";
+        print "# Artemis-machine-name:            $hostname\n";
+        print "# Artemis-uname:                   $uname\n";
+        print "# Artemis-osname:                  $osname\n";
+        print "# Artemis-cpuinfo:                 $cpuinfo\n";
+        print "# Artemis-ram:                     $ram\n";
+        print "# Artemis-starttime-test-program:  $starttime_test_program\n";
 }
 
 =head1 NAME
