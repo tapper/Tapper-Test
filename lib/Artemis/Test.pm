@@ -113,7 +113,7 @@ sub artemis_test_meta
         my %opts = @_;
 
         plan tests => 1 unless $opts{-suppress_plan};
-        ok(1, "artemis-test-meta");
+        pass("artemis-test-meta");
 
         my $uname                  = $opts{uname}                  // _uname();
         my $hostname               = $opts{hostname}               // _hostname();
