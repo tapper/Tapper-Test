@@ -10,7 +10,7 @@ use 5.010;
 use Test::More;
 
 use parent 'Exporter';
-our @EXPORT = qw/artemis_test_meta/;
+our @EXPORT = qw/artemis_suite_meta artemis_section_meta/;
 
 sub _uname {
         my $uname = `uname -a`;
@@ -101,38 +101,49 @@ sub _suite_version
 
 sub _suite_type
 {
-        'library';
+        'software'; # 'hardware', 'benchmark', 'os', 'unknown'
 }
 
 sub _language_description {
         return "Perl $], $^X";
 }
 
-sub artemis_test_meta
+sub artemis_suite_meta
 {
         my %opts = @_;
 
         plan tests => 1 unless $opts{-suppress_plan};
-        pass("artemis-test-meta");
+        pass("artemis-suite-meta");
 
-        my $uname                  = $opts{uname}                  // _uname();
-        my $hostname               = $opts{hostname}               // _hostname();
-        my $osname                 = $opts{osname}                 // _osname();
-        my $cpuinfo                = $opts{cpuinfo}                // _cpuinfo();
-        my $ram                    = $opts{ram}                    // _ram();
-        my $starttime_test_program = $opts{starttime_test_program} // _starttime_test_program();
         my $suite_name             = $opts{suite_name}             // _suite_name();
         my $suite_version          = $opts{suite_version}          // _suite_version();
         my $suite_type             = $opts{suite_type}             // _suite_type();
-        my $language_description   = $opts{language_description}   // _language_description();
+        my $hostname               = $opts{hostname}               // _hostname();
 
-        # to be used by Artemis::Reports framework
+        # to be used by TestSuite::* and Artemis::* modules
 
         print "# Artemis-suite-name:              $suite_name\n";
         print "# Artemis-suite-version:           $suite_version\n";
         print "# Artemis-suite-type:              $suite_type\n";
-        print "# Artemis-language-description:    $language_description\n";
         print "# Artemis-machine-name:            $hostname\n";
+
+        artemis_section_meta();
+}
+
+sub artemis_section_meta
+{
+        my %opts = @_;
+
+        my $uname                  = $opts{uname}                  // _uname();
+        my $osname                 = $opts{osname}                 // _osname();
+        my $cpuinfo                = $opts{cpuinfo}                // _cpuinfo();
+        my $ram                    = $opts{ram}                    // _ram();
+        my $starttime_test_program = $opts{starttime_test_program} // _starttime_test_program();
+        my $language_description   = $opts{language_description}   // _language_description();
+
+        # to be used by TestSuite::* and Artemis::* modules
+
+        print "# Artemis-language-description:    $language_description\n";
         print "# Artemis-uname:                   $uname\n";
         print "# Artemis-osname:                  $osname\n";
         print "# Artemis-cpuinfo:                 $cpuinfo\n";
