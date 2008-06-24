@@ -12,7 +12,6 @@ my $builder = Module::Build->new
                   'perl'                  => '5.010',
                   'Test::More'            => 0,
                   'parent'                => 0,
-                  'TAP::Harness::Archive' => 0,
                  },
      add_to_cleanup      => [ 'Artemis-Test-*' ],
      create_makefile_pl => 'traditional',

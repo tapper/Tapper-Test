@@ -10,8 +10,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/Artemis/Test.pm',
           'PREREQ_PM' => {
                            'Test::More' => 0,
-                           'parent' => 0,
-                           'TAP::Harness::Archive' => 0
+                           'parent' => 0
                          }
         )
 ;
