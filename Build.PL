@@ -14,7 +14,7 @@ my $builder = Module::Build->new
                   'parent'                => 0,
                  },
      add_to_cleanup      => [ 'Artemis-Test-*' ],
-     create_makefile_pl => 'traditional',
+
     );
 
 $builder->create_build_script();
