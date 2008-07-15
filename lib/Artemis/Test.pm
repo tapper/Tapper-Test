@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010003';
+our $VERSION = '2.010005';
 
 use 5.010;
 
