@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010005';
+our $VERSION = '2.010006';
 
 use 5.010;
 
@@ -127,7 +127,7 @@ sub artemis_suite_meta
         print "# Artemis-suite-type:              $suite_type\n";
         print "# Artemis-machine-name:            $hostname\n";
 
-        artemis_section_meta();
+        artemis_section_meta(@_);
 }
 
 sub artemis_section_meta
