@@ -140,6 +140,7 @@ sub artemis_section_meta
         my $ram                    = $opts{ram}                    // _ram();
         my $starttime_test_program = $opts{starttime_test_program} // _starttime_test_program();
         my $language_description   = $opts{language_description}   // _language_description();
+        my $section                = $opts{section};
 
         # to be used by TestSuite::* and Artemis::* modules
 
@@ -149,6 +150,7 @@ sub artemis_section_meta
         print "# Artemis-cpuinfo:                 $cpuinfo\n";
         print "# Artemis-ram:                     $ram\n";
         print "# Artemis-starttime-test-program:  $starttime_test_program\n";
+        print "# Artemis-section:                 $section\n" if $section;
 }
 
 
