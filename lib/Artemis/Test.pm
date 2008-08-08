@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010006';
+our $VERSION = '2.010007';
 
 use 5.010;
 
@@ -47,7 +47,7 @@ sub _ram {
 }
 
 sub _starttime_test_program {
-        my $starttime_test_program = `date` ;
+        my $starttime_test_program = `date --rfc-2822` ;
         chomp $starttime_test_program;
         return $starttime_test_program;
 }
