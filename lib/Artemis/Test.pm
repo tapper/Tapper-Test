@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010008';
+our $VERSION = '2.010009';
 
 use 5.010;
 
@@ -108,6 +108,9 @@ sub _language_description {
         return "Perl $], $^X";
 }
 
+sub _reportgroup_arbitrary { $ENV{ARTEMIS_REPORT_GROUP} }
+sub _reportgroup_testrun   { $ENV{ARTEMIS_TESTRUN}   }
+
 sub artemis_suite_meta
 {
         my %opts = @_;
@@ -119,9 +122,13 @@ sub artemis_suite_meta
         my $suite_version          = $opts{suite_version}          // _suite_version();
         my $suite_type             = $opts{suite_type}             // _suite_type();
         my $hostname               = $opts{hostname}               // _hostname();
+        my $reportgroup_arbitrary  = $opts{reportgroup_arbitrary}  // _reportgroup_arbitrary();
+        my $reportgroup_testrun    = $opts{reportgroup_testrun}    // _reportgroup_testrun();
 
         # to be used by TestSuite::* and Artemis::* modules
 
+        print "# Artemis-reportgroup-arbitrary:   $reportgroup_arbitrary\n" if $reportgroup_arbitrary;
+        print "# Artemis-reportgroup-testrun:     $reportgroup_testrun\n"   if $reportgroup_testrun;
         print "# Artemis-suite-name:              $suite_name\n";
         print "# Artemis-suite-version:           $suite_version\n";
         print "# Artemis-suite-type:              $suite_type\n";
