@@ -3,7 +3,7 @@ package Artemis::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010009';
+our $VERSION = '2.010010';
 
 use 5.010;
 
@@ -65,7 +65,7 @@ sub _suite_name
         }
         elsif (-e $makefile)
         {
-                my $suite_name = `grep '^DISTVNAME = ' Makefile | head -1 | cut -d= -f2-`;
+                my $suite_name = `grep '^DISTNAME = ' Makefile | head -1 | cut -d= -f2-`;
                 chomp $suite_name;
                 $suite_name =~ s/^\s*//;
                 return $suite_name;
