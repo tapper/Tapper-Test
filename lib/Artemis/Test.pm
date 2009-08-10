@@ -83,7 +83,13 @@ sub _suite_version
         if (-e $build_paramfile )
         {
                 my $params = do $build_paramfile;
-                my $suite_version = $params->[2]->{dist_version}->{original};
+                my $suite_version;
+                if (not ref $params->[2]->{dist_version}) {
+                        $suite_version = $params->[2]->{dist_version};
+                } else {
+                        $suite_version = $params->[2]->{dist_version}->{original};
+                }
+                
                 return $suite_version;
         }
         elsif (-e $makefile)
