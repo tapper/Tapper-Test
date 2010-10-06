@@ -31,7 +31,7 @@ sub _osname {
 }
 
 sub _cpuinfo {
-        my @cpus      = map { chomp; s/^\s*//; $_ } `grep 'model name' < /proc/cpuinfo | cut -d: -f2-`;
+        my @cpus      = map { my $x = $_ ; chomp $x; $x =~ s/^\s*//; $x } `grep 'model name' < /proc/cpuinfo | cut -d: -f2-`;
         my %cpu_count = ();
         $cpu_count{$_}++ foreach @cpus;
 
