@@ -6,6 +6,7 @@ use inc::Module::Install;
 name     'Artemis-Test';
 all_from 'lib/Artemis/Test.pm';
 author   'OSRC SysInt Team <osrc-sysint@elbe.amd.com>';
+license  'freebsd';
 
 build_requires 'Test::Perl::Critic';
 
