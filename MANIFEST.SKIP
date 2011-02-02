@@ -1,5 +1,5 @@
-Artemis-Test-*.*.tar.gz
-^Artemis-Test-*.*$
+Tapper-Test-*.*.tar.gz
+^Tapper-Test-*.*$
 _build
 blib
 ^Build$

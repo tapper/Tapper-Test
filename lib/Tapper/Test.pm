@@ -1,4 +1,4 @@
-package Artemis::Test;
+package Tapper::Test;
 
 use warnings;
 use strict;
@@ -10,7 +10,7 @@ use 5.010;
 use Test::More;
 
 use parent 'Exporter';
-our @EXPORT = qw/artemis_suite_meta artemis_section_meta/;
+our @EXPORT = qw/tapper_suite_meta tapper_section_meta/;
 
 sub _uname {
         my $uname = `uname -a`;
@@ -114,15 +114,15 @@ sub _language_description {
         return "Perl $], $^X";
 }
 
-sub _reportgroup_arbitrary { $ENV{ARTEMIS_REPORT_GROUP} }
-sub _reportgroup_testrun   { $ENV{ARTEMIS_TESTRUN}   }
+sub _reportgroup_arbitrary { $ENV{TAPPER_REPORT_GROUP} }
+sub _reportgroup_testrun   { $ENV{TAPPER_TESTRUN}   }
 
-sub artemis_suite_meta
+sub tapper_suite_meta
 {
         my %opts = @_;
 
         plan tests => 1 unless $opts{-suppress_plan};
-        pass("artemis-suite-meta");
+        pass("tapper-suite-meta");
 
         my $suite_name             = $opts{suite_name}             // _suite_name();
         my $suite_version          = $opts{suite_version}          // _suite_version();
@@ -131,19 +131,19 @@ sub artemis_suite_meta
         my $reportgroup_arbitrary  = $opts{reportgroup_arbitrary}  // _reportgroup_arbitrary();
         my $reportgroup_testrun    = $opts{reportgroup_testrun}    // _reportgroup_testrun();
 
-        # to be used by TestSuite::* and Artemis::* modules
+        # to be used by TestSuite::* and Tapper::* modules
 
-        print "# Artemis-reportgroup-arbitrary:   $reportgroup_arbitrary\n" if $reportgroup_arbitrary;
-        print "# Artemis-reportgroup-testrun:     $reportgroup_testrun\n"   if $reportgroup_testrun;
-        print "# Artemis-suite-name:              $suite_name\n";
-        print "# Artemis-suite-version:           $suite_version\n";
-        print "# Artemis-suite-type:              $suite_type\n";
-        print "# Artemis-machine-name:            $hostname\n";
+        print "# Tapper-reportgroup-arbitrary:   $reportgroup_arbitrary\n" if $reportgroup_arbitrary;
+        print "# Tapper-reportgroup-testrun:     $reportgroup_testrun\n"   if $reportgroup_testrun;
+        print "# Tapper-suite-name:              $suite_name\n";
+        print "# Tapper-suite-version:           $suite_version\n";
+        print "# Tapper-suite-type:              $suite_type\n";
+        print "# Tapper-machine-name:            $hostname\n";
 
-        artemis_section_meta(@_);
+        tapper_section_meta(@_);
 }
 
-sub artemis_section_meta
+sub tapper_section_meta
 {
         my %opts = @_;
 
@@ -155,26 +155,26 @@ sub artemis_section_meta
         my $language_description   = $opts{language_description}   // _language_description();
         my $section                = $opts{section};
 
-        # to be used by TestSuite::* and Artemis::* modules
+        # to be used by TestSuite::* and Tapper::* modules
 
-        print "# Artemis-language-description:    $language_description\n";
-        print "# Artemis-uname:                   $uname\n";
-        print "# Artemis-osname:                  $osname\n";
-        print "# Artemis-cpuinfo:                 $cpuinfo\n";
-        print "# Artemis-ram:                     $ram\n";
-        print "# Artemis-starttime-test-program:  $starttime_test_program\n";
-        print "# Artemis-section:                 $section\n" if $section;
+        print "# Tapper-language-description:    $language_description\n";
+        print "# Tapper-uname:                   $uname\n";
+        print "# Tapper-osname:                  $osname\n";
+        print "# Tapper-cpuinfo:                 $cpuinfo\n";
+        print "# Tapper-ram:                     $ram\n";
+        print "# Tapper-starttime-test-program:  $starttime_test_program\n";
+        print "# Tapper-section:                 $section\n" if $section;
 }
 
 
 =head1 NAME
 
-Artemis::Test - Utilities for testing!
+Tapper::Test - Utilities for testing!
 
 =head1 SYNOPSIS
 
-    use Artemis::Test;
-    my $foo = Artemis::Test->new();
+    use Tapper::Test;
+    my $foo = Tapper::Test->new();
     ...
 
 =head1 AUTHOR
@@ -190,4 +190,4 @@ This program is released under the following license: restrictive
 
 =cut
 
-1; # End of Artemis::Test
+1; # End of Tapper::Test

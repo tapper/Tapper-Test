@@ -3,8 +3,8 @@ use warnings;
 
 use inc::Module::Install;
 
-name     'Artemis-Test';
-all_from 'lib/Artemis/Test.pm';
+name     'Tapper-Test';
+all_from 'lib/Tapper/Test.pm';
 author   'OSRC SysInt Team <osrc-sysint@elbe.amd.com>';
 license  'freebsd';
 
