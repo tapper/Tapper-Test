@@ -10,6 +10,8 @@ license  'freebsd';
 
 build_requires 'Test::Perl::Critic';
 
+author_requires 'Module::Install::WriteAll';
+
 requires 'Test::More' => 0;
 requires 'perl'       => '5.010';
 requires 'parent';
