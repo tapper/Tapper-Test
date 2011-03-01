@@ -169,7 +169,7 @@ sub tapper_section_meta
 
 =head1 NAME
 
-Tapper::Test - Utilities for testing!
+Tapper::Test - Tapper - Utilities for Perl based Tapper testing
 
 =head1 SYNOPSIS
 
