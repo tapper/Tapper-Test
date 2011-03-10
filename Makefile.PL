@@ -16,5 +16,8 @@ requires 'Test::More' => 0;
 requires 'perl'       => '5.010';
 requires 'parent';
 
+repository 'git://github.com/amd/Tapper-Test.git';
+bugtracker 'http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Tapper-Test';
+
 WriteAll;
 
