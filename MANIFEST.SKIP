@@ -1,3 +1,4 @@
+^.git
 Tapper-Test-*.*.tar.gz
 ^Tapper-Test-*.*$
 _build

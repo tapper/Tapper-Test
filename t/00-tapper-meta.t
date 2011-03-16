@@ -2,7 +2,9 @@
 
 use strict;
 use warnings;
+use Test::More;
 
-use Tapper::Test;
+eval "use Tapper::Test";
+plan skip_all => "Tapper::Test not available" if $@;
 
 tapper_suite_meta();

@@ -3,7 +3,7 @@ package Tapper::Test;
 use warnings;
 use strict;
 
-our $VERSION = '2.010012';
+our $VERSION = '3.000004';
 
 use 5.010;
 
@@ -169,7 +169,7 @@ sub tapper_section_meta
 
 =head1 NAME
 
-Tapper::Test - Utilities for testing!
+Tapper::Test - Tapper - Utilities for Perl based Tapper testing
 
 =head1 SYNOPSIS
 
@@ -188,13 +188,13 @@ testing.
 
 =head1 AUTHOR
 
-OSRC SysInt Team, C<< <osrc-sysint at elbe.amd.com> >>
+AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2008 OSRC SysInt Team, all rights reserved.
+Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
 
-This program is released under the following license: restrictive
+This program is released under the following license: freebsd
 
 
 =cut
