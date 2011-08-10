@@ -1,3 +1,10 @@
+2011-08-10  Steffen Schwigon  <ss5@renormalist.net>
+
+	* v3.0.11
+
+	* Get information platform independent by using Sys::Info
+	  instead of using uname, /proc/cpuinfo, etc.
+
 2011-04-07 Steffen Schwigon <steffen.schwigon@amd.com>
 
 	* v3.0.10
