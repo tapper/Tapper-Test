@@ -8,47 +8,63 @@ our $VERSION = '3.000010';
 use 5.010;
 
 use Test::More;
+use Sys::Info;
+use Format::Human::Bytes;
 
 use parent 'Exporter';
 our @EXPORT = qw/tapper_suite_meta tapper_section_meta/;
 
 sub _uname {
-        my $uname = `uname -a`;
-        chomp $uname;
+        my $os = Sys::Info->new->os;
+
+        my $osbase =
+         $os->is_win   ? "Windows" :
+         $os->is_linux ? "Linux" :
+         $os->is_bsd   ? "BSD" :
+         "UnknownOS";
+        my $uname = join (" ",
+                          $osbase,
+                          $os->node_name,
+                          $os->name(long => 1, edition => 1),
+                          ~~localtime($os->build),
+                         );
+        $uname .= " [Sys::Info]";
         return $uname;
 }
 
 sub _hostname {
-        my $hostname = `hostname`;
-        chomp $hostname;
+        my $hostname = Sys::Info->new->os->node_name;
         return $hostname;
 }
 
 sub _osname {
-        my $osname = `cat /etc/issue.net | head -1`;
-        chomp $osname;
+        my $os = Sys::Info->new->os;
+        my $osname = join (" ",
+                           $os->name(edition => 1),
+                           $os->version,
+                          );
         return $osname;
 }
 
 sub _cpuinfo {
-        my @cpus      = map { my $x = $_ ; chomp $x; $x =~ s/^\s*//; $x } `grep 'model name' < /proc/cpuinfo | cut -d: -f2-`;
-        my %cpu_count = ();
-        $cpu_count{$_}++ foreach @cpus;
-
-        my $cpuinfo = join(', ', map { $cpu_count{$_}." cores [$_]" } keys %cpu_count);
-        return $cpuinfo;
+        return Sys::Info->new->device('CPU')->identify;
 }
 
 sub _ram {
-        my $ram = `free -m | grep -i mem: | awk '{print \$2}'`;
-        chomp $ram;
-        $ram .= 'MB';
+        my %osmeta = Sys::Info->new->os->meta;
+        my $ram = Format::Human::Bytes::base2($osmeta{physical_memory_total}*1024);
         return $ram;
 }
 
 sub _starttime_test_program {
-        my $starttime_test_program = `date --rfc-2822` ;
-        chomp $starttime_test_program;
+        use POSIX qw(strftime setlocale);
+
+        my $old_loc = setlocale( &POSIX::LC_ALL );
+
+        setlocale( &POSIX::LC_ALL, "C" );
+        my $starttime_test_program = strftime("%a, %d %b %Y %H:%M:%S %z", gmtime(time()));
+        setlocale( &POSIX::LC_ALL, $old_loc );
+
         return $starttime_test_program;
 }
 
