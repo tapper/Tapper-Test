@@ -1,3 +1,11 @@
+2011-11-24  Steffen Schwigon  <ss5@renormalist.net>
+
+	* v3.0.12
+
+	* Fix stupidity. Making the information retrieval platform
+	  independent and then have Linux and machine specific
+	  unittests is, erm, stupid.
+
 2011-08-10  Steffen Schwigon  <ss5@renormalist.net>
 
 	* v3.0.11

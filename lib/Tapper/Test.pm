@@ -3,7 +3,7 @@ package Tapper::Test;
 use warnings;
 use strict;
 
-our $VERSION = '3.000011';
+our $VERSION = '3.000012';
 
 use 5.010;
 
