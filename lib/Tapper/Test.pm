@@ -1,9 +1,8 @@
 package Tapper::Test;
+# ABSTRACT: Tapper - Utilities for Perl based Tapper testing
 
 use warnings;
 use strict;
-
-our $VERSION = '3.000012';
 
 use 5.010;
 
@@ -182,15 +181,12 @@ sub tapper_section_meta
         print "# Tapper-section:                 $section\n" if $section;
 }
 
-
-=head1 NAME
-
-Tapper::Test - Tapper - Utilities for Perl based Tapper testing
-
 =head1 SYNOPSIS
 
  use Tapper::Test;
  tapper_suite_meta();
+
+=cut
 
 =head1 DESCRIPTION
 
@@ -201,17 +197,6 @@ Tapper::Test::tapper_suite_meta() in your perl test script. This will
 print the metainformation to STDOUT in the format Tapper expects (TAP
 headers). See L<Tapper::Doc|Tapper::Doc> for more information on Tapper
 testing.
-
-=head1 AUTHOR
-
-AMD OSRC Tapper Team, C<< <tapper at amd64.org> >>
-
-=head1 COPYRIGHT & LICENSE
-
-Copyright 2008-2011 AMD OSRC Tapper Team, all rights reserved.
-
-This program is released under the following license: freebsd
-
 
 =cut
 
