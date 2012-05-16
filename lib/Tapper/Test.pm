@@ -104,7 +104,7 @@ sub _suite_version
                 } else {
                         $suite_version = $params->[2]->{dist_version}->{original};
                 }
-                
+
                 return $suite_version;
         }
         elsif (-e $makefile)
