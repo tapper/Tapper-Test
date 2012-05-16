@@ -132,6 +132,12 @@ sub _language_description {
 sub _reportgroup_arbitrary { $ENV{TAPPER_REPORT_GROUP} }
 sub _reportgroup_testrun   { $ENV{TAPPER_TESTRUN}   }
 
+=head2 tapper_suite_meta
+
+Provides general meta information applying to the whole report.
+
+=cut
+
 sub tapper_suite_meta
 {
         my %opts = @_;
@@ -157,6 +163,12 @@ sub tapper_suite_meta
 
         tapper_section_meta(@_);
 }
+
+=head2 tapper_section_meta
+
+Provides meta information allowed to be repeated in several sections.
+
+=cut
 
 sub tapper_section_meta
 {
