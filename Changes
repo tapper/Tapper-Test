@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - platform independent sysinfo
+        - fix tests
         - big Dist::Zilla roundhouse kick
 
 2011-11-24  Steffen Schwigon  <ss5@renormalist.net>
