@@ -81,16 +81,20 @@ sub _suite_name
         }
         elsif (-e $makefile)
         {
-                my $suite_name = `grep '^DISTNAME = ' $makefile | head -1 | cut -d= -f2-`;
+                my $infile = $makefile;
+                open my $F, "<", $infile or die "Cannot open $infile";
+                my ($suite_name) = grep { /^DISTNAME *=/ } <$F>;
+                $suite_name =~ s/^.*=\s*//;
                 chomp $suite_name;
-                $suite_name =~ s/^\s*//;
                 return $suite_name;
         }
         elsif (-e $distini)
         {
-                my $suite_name = `grep '^name *= ' $distini | head -1 | cut -d= -f2-`;
+                my $infile = $distini;
+                open my $F, "<", $infile or die "Cannot open $infile";
+                my ($suite_name) = grep { /^name *=/ } <$F>;
+                $suite_name =~ s/^.*=\s*//;
                 chomp $suite_name;
-                $suite_name =~ s/^\s*//;
                 return $suite_name;
         }
         else
@@ -115,22 +119,20 @@ sub _suite_version
                 } else {
                         $suite_version = $params->[2]->{dist_version}->{original};
                 }
-
                 return $suite_version;
         }
         elsif (-e $makefile)
         {
-                my $suite_version = `grep '^VERSION = ' $makefile | head -1 | cut -d= -f2-`;
+                my $infile = $makefile;
+                open my $F, "<", $infile or die "Cannot open $infile";
+                my ($suite_version) = grep { /^VERSION *=/ } <$F>;
+                $suite_version =~ s/^.*=\s*//;
                 chomp $suite_version;
-                $suite_version =~ s/^\s*//;
                 return $suite_version;
         }
         elsif (-e $distini)
         {
-                my $suite_version = `grep '^VERSION = ' $distini | head -1 | cut -d= -f2-`;
-                chomp $suite_version;
-                $suite_version =~ s/^\s*//;
-                return $suite_version;
+                return undef;
         }
         else
         {
