@@ -71,6 +71,7 @@ sub _suite_name
 {
         my $build_paramfile = '_build/build_params';
         my $makefile        = 'Makefile';
+        my $distini         = 'dist.ini';
 
         if (-e $build_paramfile )
         {
@@ -80,13 +81,22 @@ sub _suite_name
         }
         elsif (-e $makefile)
         {
-                my $suite_name = `grep '^DISTNAME = ' Makefile | head -1 | cut -d= -f2-`;
+                my $suite_name = `grep '^DISTNAME = ' $makefile | head -1 | cut -d= -f2-`;
                 chomp $suite_name;
                 $suite_name =~ s/^\s*//;
                 return $suite_name;
-        } else
+        }
+        elsif (-e $distini)
         {
-                die 'Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL.';
+                my $suite_name = `grep '^name *= ' $distini | head -1 | cut -d= -f2-`;
+                chomp $suite_name;
+                $suite_name =~ s/^\s*//;
+                return $suite_name;
+        }
+        else
+        {
+                warn "Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL.\n";
+                return undef;
         }
 }
 
@@ -94,6 +104,7 @@ sub _suite_version
 {
         my $build_paramfile = '_build/build_params';
         my $makefile        = 'Makefile';
+        my $distini         = 'dist.ini';
 
         if (-e $build_paramfile )
         {
@@ -109,14 +120,22 @@ sub _suite_version
         }
         elsif (-e $makefile)
         {
-                my $suite_version = `grep '^VERSION = ' Makefile | head -1 | cut -d= -f2-`;
+                my $suite_version = `grep '^VERSION = ' $makefile | head -1 | cut -d= -f2-`;
+                chomp $suite_version;
+                $suite_version =~ s/^\s*//;
+                return $suite_version;
+        }
+        elsif (-e $distini)
+        {
+                my $suite_version = `grep '^VERSION = ' $distini | head -1 | cut -d= -f2-`;
                 chomp $suite_version;
                 $suite_version =~ s/^\s*//;
                 return $suite_version;
         }
         else
         {
-                die 'Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL.';
+                warn "Cannot access $build_paramfile or $makefile.\nPlease run perl Build.PL or perl Makefile.PL\n";
+                return undef;
         }
 }
 

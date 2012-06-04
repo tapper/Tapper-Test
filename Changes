@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - more laxity on those not-so-clever tests
 
 4.0.1     2012-05-16
         - platform independent sysinfo
