@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+        - release version bump only
 
 4.1.2     2012-11-19
         - dzil pluginbundle TAPPER
